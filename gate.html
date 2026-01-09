@@ -1,99 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Please Wait</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-    margin:0;
-    font-family:Arial;
-    background:#020617;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont;
+    background:radial-gradient(circle at top,#020617,#000);
     color:#fff;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
 }
-.top{
-    background:#000;
-    padding:12px;
-    font-size:16px;
+
+.container{
+    width:92%;
+    max-width:420px;
 }
-.timer{
-    color:#22c55e;
-    font-weight:bold;
-}
-.adbox{
+
+/* 3D Loader */
+.loader{
+    width:90px;
+    height:90px;
     margin:20px auto;
-    max-width:320px;
+    border-radius:50%;
+    border:6px solid rgba(255,255,255,.1);
+    border-top:6px solid #22c55e;
+    animation:spin 1.2s linear infinite;
+    box-shadow:0 0 25px rgba(34,197,94,.6);
 }
-button{
-    padding:14px 28px;
-    font-size:16px;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
 }
-.cancel{
-    background:#ef4444;
-    color:#fff;
-    display:none;
+
+h2{
+    font-size:20px;
+    margin-bottom:6px;
 }
-.download{
-    background:#22c55e;
-    color:#000;
-    display:none;
+
+.timer{
+    font-size:34px;
+    font-weight:700;
+    color:#22c55e;
+    margin:12px 0;
+}
+
+.adbox{
+    margin:18px auto;
+    padding:12px;
+    border-radius:12px;
+    background:#020617;
+    border:1px solid #1e293b;
+}
+
+.note{
+    font-size:12px;
+    opacity:.6;
+    margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">
-    Please wait <span class="timer" id="time">30</span> seconds
+<div class="container">
+
+    <h2>Preparing your download</h2>
+    <p class="note">Please wait a moment…</p>
+
+    <div class="loader"></div>
+
+    <div class="timer">
+        <span id="time">30</span>s
+    </div>
+
+    <!-- 🔥 Native Banner Ad -->
+    <div class="adbox">
+        <!-- এখানে Native Banner Ad code বসাও -->
+        <!-- Example:
+        <script src="https://native-ad-network.js"></script>
+        -->
+    </div>
+
+    <p class="note">Ads help keep this download free</p>
+
 </div>
-
-<!-- 🔥 Native Banner Ad -->
-<div class="adbox">
-    <!-- 🔽 এখানে Native Banner Ad Code বসাও -->
-    <!-- Example:
-    <script src="https://your-ad-network-native.js"></script>
-    -->
-</div>
-
-<p>Ads help keep this download free</p>
-
-<button class="cancel" id="cancelBtn" onclick="showDownload()">
-    Cancel
-</button>
-
-<br><br>
-
-<button class="download" id="downloadBtn" onclick="startDownload()">
-    Final Download
-</button>
 
 <script>
-const FILE_LINK = "https://YOUR_REAL_FILE_LINK";
+/* ========= CONFIG ========= */
+const DIRECT_LINK = "https://www.effectivegatecpm.com/s5e3r8h0g?key=6625be59defdc02345118754d3cb412e";
+const FILE_LINK   = "https://YOUR_REAL_FILE_LINK";
+/* ========================== */
 
-let t = 30;
-const timer = document.getElementById("time");
-const cancelBtn = document.getElementById("cancelBtn");
-const downloadBtn = document.getElementById("downloadBtn");
+/* 1️⃣ Fire Direct Link immediately */
+window.open(DIRECT_LINK,"_blank");
 
-const interval = setInterval(()=>{
-    t--;
-    timer.innerText = t;
+/* 2️⃣ Countdown + Auto Download */
+let time = 30;
+const t = document.getElementById("time");
 
-    if(t <= 0){
-        clearInterval(interval);
-        cancelBtn.style.display = "inline-block";
+const countdown = setInterval(()=>{
+    time--;
+    t.innerText = time;
+
+    if(time <= 0){
+        clearInterval(countdown);
+        startDownload();
     }
 },1000);
-
-function showDownload(){
-    cancelBtn.style.display = "none";
-    downloadBtn.style.display = "inline-block";
-}
 
 function startDownload(){
     window.location.href = FILE_LINK;
