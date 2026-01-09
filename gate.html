@@ -4,60 +4,72 @@
 <meta charset="UTF-8">
 <title>Please Wait</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
+    margin:0;
     font-family:Arial;
     background:#020617;
     color:#fff;
+}
+.header{
+    background:#000;
+    padding:12px;
+    text-align:center;
+    font-size:16px;
+}
+.timer{
+    font-size:20px;
+    font-weight:bold;
+    color:#22c55e;
+}
+.adbox{
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    margin-top:20px;
+    min-height:250px;
 }
-.box{text-align:center;}
-.timer{font-size:40px;margin:20px 0;}
-.btn{
-    background:#ef4444;
-    color:#fff;
-    padding:12px 20px;
-    border-radius:8px;
-    font-size:16px;
-    display:none;
-    cursor:pointer;
+.note{
+    text-align:center;
+    font-size:12px;
+    opacity:.6;
+    margin-top:10px;
 }
 </style>
 </head>
+
 <body>
 
-<div class="box">
-    <h2>⏳ Please wait</h2>
-    <p>Advertisement loading…</p>
-    <div class="timer" id="time">30</div>
-    <div class="btn" id="closeBtn" onclick="finish()">Close & Download</div>
+<div class="header">
+    Please wait <span class="timer" id="time">30</span> seconds…
+</div>
+
+<!-- 🔥 AD AREA -->
+<div class="adbox">
+    <!-- 👉 PASTE YOUR ADSTERRA AD SCRIPT BELOW -->
+    <!-- Example: -->
+    <!-- <script src="https://www.effectivegatecpm.com/s5e3r8h0g?key=6625be59defdc02345118754d3cb412e"></script> -->
+</div>
+
+<div class="note">
+    Ads help keep this download free
 </div>
 
 <script>
-const AD_LINK = "https://www.effectivegatecpm.com/s5e3r8h0g?key=6625be59defdc02345118754d3cb412e"; // Adsterra link later
 const FILE_LINK = "https://pub-8a1d2f3bb27f4dcda3ecf6b5f9085305.r2.dev/apks/46b42603-5c95-44d4-85e0-0c0402b76172";
-
-window.open(AD_LINK,"_blank");
 
 let time = 30;
 const timer = setInterval(()=>{
     time--;
     document.getElementById("time").innerText = time;
+
     if(time <= 0){
         clearInterval(timer);
-        document.getElementById("closeBtn").style.display="inline-block";
+        window.opener.location.href = FILE_LINK;
+        window.close();
     }
 },1000);
-
-function finish(){
-    if(window.opener){
-        window.opener.location.href = FILE_LINK;
-    }
-    window.close();
-}
 </script>
 
 </body>
