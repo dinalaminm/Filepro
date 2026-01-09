@@ -12,64 +12,98 @@ body{
     background:#020617;
     color:#fff;
 }
-.header{
+.top{
     background:#000;
     padding:12px;
     text-align:center;
     font-size:16px;
 }
 .timer{
-    font-size:20px;
-    font-weight:bold;
     color:#22c55e;
+    font-weight:bold;
 }
-.adbox{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-top:20px;
-    min-height:250px;
-}
-.note{
-    text-align:center;
-    font-size:12px;
-    opacity:.6;
+.adwrap{
     margin-top:10px;
+    height:75vh;
+}
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+.center{
+    text-align:center;
+    margin-top:20px;
+}
+button{
+    padding:14px 28px;
+    font-size:16px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+.cancel{
+    background:#ef4444;
+    color:#fff;
+}
+.download{
+    background:#22c55e;
+    color:#000;
+    display:none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    Please wait <span class="timer" id="time">30</span> seconds…
+<div class="top">
+    Please wait <span class="timer" id="time">30</span> seconds
 </div>
 
-<!-- 🔥 AD AREA -->
-<div class="adbox">
-    <!-- 👉 PASTE YOUR ADSTERRA AD SCRIPT BELOW -->
-    <!-- Example: -->
-    <!-- <script src="https://www.effectivegatecpm.com/s5e3r8h0g?key=6625be59defdc02345118754d3cb412e"></script> -->
+<!-- 🔥 DIRECT LINK AD PAGE -->
+<div class="adwrap">
+    <iframe src="https://www.effectivegatecpm.com/s5e3r8h0g?key=6625be59defdc02345118754d3cb412e"></iframe>
 </div>
 
-<div class="note">
-    Ads help keep this download free
+<div class="center">
+    <button id="cancelBtn" class="cancel" style="display:none" onclick="showDownload()">
+        Cancel
+    </button>
+
+    <br><br>
+
+    <button id="downloadBtn" class="download" onclick="startDownload()">
+        Final Download
+    </button>
 </div>
 
 <script>
-const FILE_LINK = "https://pub-8a1d2f3bb27f4dcda3ecf6b5f9085305.r2.dev/apks/46b42603-5c95-44d4-85e0-0c0402b76172";
+let t = 30;
+const timer = document.getElementById("time");
+const cancelBtn = document.getElementById("cancelBtn");
+const downloadBtn = document.getElementById("downloadBtn");
 
-let time = 30;
-const timer = setInterval(()=>{
-    time--;
-    document.getElementById("time").innerText = time;
+// ⏱ Countdown
+const interval = setInterval(()=>{
+    t--;
+    timer.innerText = t;
 
-    if(time <= 0){
-        clearInterval(timer);
-        window.opener.location.href = FILE_LINK;
-        window.close();
+    if(t <= 0){
+        clearInterval(interval);
+        cancelBtn.style.display = "inline-block";
     }
 },1000);
+
+// Cancel → Show Download
+function showDownload(){
+    cancelBtn.style.display = "none";
+    downloadBtn.style.display = "inline-block";
+}
+
+// Final Download
+function startDownload(){
+    window.location.href = "https://pub-8a1d2f3bb27f4dcda3ecf6b5f9085305.r2.dev/apks/46b42603-5c95-44d4-85e0-0c0402b76172";
+}
 </script>
 
 </body>
