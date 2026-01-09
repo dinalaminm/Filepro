@@ -11,29 +11,20 @@ body{
     font-family:Arial;
     background:#020617;
     color:#fff;
+    text-align:center;
 }
 .top{
     background:#000;
     padding:12px;
-    text-align:center;
     font-size:16px;
 }
 .timer{
     color:#22c55e;
     font-weight:bold;
 }
-.adwrap{
-    margin-top:10px;
-    height:75vh;
-}
-iframe{
-    width:100%;
-    height:100%;
-    border:none;
-}
-.center{
-    text-align:center;
-    margin-top:20px;
+.adbox{
+    margin:20px auto;
+    max-width:320px;
 }
 button{
     padding:14px 28px;
@@ -45,6 +36,7 @@ button{
 .cancel{
     background:#ef4444;
     color:#fff;
+    display:none;
 }
 .download{
     background:#22c55e;
@@ -60,30 +52,34 @@ button{
     Please wait <span class="timer" id="time">30</span> seconds
 </div>
 
-<!-- 🔥 DIRECT LINK AD PAGE -->
-<div class="adwrap">
-    <iframe src="https://www.effectivegatecpm.com/s5e3r8h0g?key=6625be59defdc02345118754d3cb412e"></iframe>
+<!-- 🔥 Native Banner Ad -->
+<div class="adbox">
+    <!-- 🔽 এখানে Native Banner Ad Code বসাও -->
+    <!-- Example:
+    <script src="https://your-ad-network-native.js"></script>
+    -->
 </div>
 
-<div class="center">
-    <button id="cancelBtn" class="cancel" style="display:none" onclick="showDownload()">
-        Cancel
-    </button>
+<p>Ads help keep this download free</p>
 
-    <br><br>
+<button class="cancel" id="cancelBtn" onclick="showDownload()">
+    Cancel
+</button>
 
-    <button id="downloadBtn" class="download" onclick="startDownload()">
-        Final Download
-    </button>
-</div>
+<br><br>
+
+<button class="download" id="downloadBtn" onclick="startDownload()">
+    Final Download
+</button>
 
 <script>
+const FILE_LINK = "https://YOUR_REAL_FILE_LINK";
+
 let t = 30;
 const timer = document.getElementById("time");
 const cancelBtn = document.getElementById("cancelBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 
-// ⏱ Countdown
 const interval = setInterval(()=>{
     t--;
     timer.innerText = t;
@@ -94,15 +90,13 @@ const interval = setInterval(()=>{
     }
 },1000);
 
-// Cancel → Show Download
 function showDownload(){
     cancelBtn.style.display = "none";
     downloadBtn.style.display = "inline-block";
 }
 
-// Final Download
 function startDownload(){
-    window.location.href = "https://pub-8a1d2f3bb27f4dcda3ecf6b5f9085305.r2.dev/apks/46b42603-5c95-44d4-85e0-0c0402b76172";
+    window.location.href = FILE_LINK;
 }
 </script>
 
