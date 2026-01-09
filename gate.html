@@ -14,13 +14,8 @@ body{
     align-items:center;
     height:100vh;
 }
-.box{
-    text-align:center;
-}
-.timer{
-    font-size:40px;
-    margin:20px 0;
-}
+.box{text-align:center;}
+.timer{font-size:40px;margin:20px 0;}
 .btn{
     background:#ef4444;
     color:#fff;
@@ -37,25 +32,20 @@ body{
 <div class="box">
     <h2>⏳ Please wait</h2>
     <p>Advertisement loading…</p>
-
     <div class="timer" id="time">30</div>
-
     <div class="btn" id="closeBtn" onclick="finish()">Close & Download</div>
 </div>
 
-<!-- Adsterra Direct / Pop Script -->
 <script>
-const AD_LINK = "https://google.com";
+const AD_LINK = "https://google.com"; // Adsterra link later
 const FILE_LINK = "https://pub-8a1d2f3bb27f4dcda3ecf6b5f9085305.r2.dev/apks/46b42603-5c95-44d4-85e0-0c0402b76172";
 
-// Fire ad immediately
 window.open(AD_LINK,"_blank");
 
 let time = 30;
 const timer = setInterval(()=>{
     time--;
     document.getElementById("time").innerText = time;
-
     if(time <= 0){
         clearInterval(timer);
         document.getElementById("closeBtn").style.display="inline-block";
@@ -63,7 +53,9 @@ const timer = setInterval(()=>{
 },1000);
 
 function finish(){
-    window.opener.location.href = FILE_LINK;
+    if(window.opener){
+        window.opener.location.href = FILE_LINK;
+    }
     window.close();
 }
 </script>
